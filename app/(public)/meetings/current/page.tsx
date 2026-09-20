@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import type { SacramentMeeting } from '../../../lib/types';
+import type { SacramentMeeting } from '../../../../lib/types';
 
 function getTargetSundayString(): string {
   const currentZoneDate = new Date();
