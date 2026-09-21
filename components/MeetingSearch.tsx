@@ -1,5 +1,5 @@
 // components/MeetingSearch.tsx
-'use client'; // 🚀 CRITICAL: Accesses client-side navigation router hooks
+'use client'; // Accesses client-side navigation router hooks
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
@@ -9,7 +9,7 @@ export function MeetingSearch() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  // ⏱️ Debounce limits database queries by waiting 300ms after the user stops typing
+  // Debounce limits database queries by waiting 300ms after the user stops typing
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     params.set('page', '1'); // Always reset to page 1 on a brand-new search query execution

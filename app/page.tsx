@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -10,6 +11,15 @@ export default function Home() {
         <h1 className="text-4xl sm:text-5xl font-black text-gray-950 tracking-tight leading-tight">
           Sacrament Meeting Planning Suite
         </h1>
+
+      <Image 
+        src= "/lds-image.jpg"
+        alt='group picture'
+        width = {800}
+        height = {450}
+        className = "mx-auto mt-8 rounded-lg"
+      />
+
         <p className="text-base text-gray-600 max-w-md mx-auto leading-relaxed">
           An enterprise full-stack scheduling and program management dashboard designed to coordinate ward Sunday calendars seamlessly.
         </p>
