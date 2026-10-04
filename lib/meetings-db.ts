@@ -75,6 +75,33 @@ export async function getMeetingById(
   return (rows[0] as unknown as SacramentMeeting) ?? null;
 }
 
+export async function getUserByEmail(email: string) {
+  try {
+    // Using your active Neon database client engine
+    const result = await sql`
+      SELECT id, name, email, password, role FROM users 
+      WHERE email = ${email.toLowerCase()} LIMIT 1
+    `;
+    
+    if (result.length === 0) return null;
+    
+    const user = result[0];
+    
+    // Auth.js expects a passwordHash key. Map your password column to match what auth.ts reads:
+    return {
+      id: String(user.id),
+      name: user.name,
+      email: user.email,
+      passwordHash: user.password, // Bridges your DB column to the Auth.js checker
+      role: user.role,
+    };
+  } catch (error) {
+    console.error('Failed to fetch user by email from database:', error);
+    throw new Error('Failed to fetch user.');
+  }
+}
+
+
 // Mutation stubs — will be wired to the database in Week 04
 export async function addMeeting(
   data: Omit<SacramentMeeting, 'id'>
@@ -92,3 +119,4 @@ export async function updateMeeting(
 export async function deleteMeeting(id: number): Promise<boolean> {
   throw new Error('deleteMeeting: database implementation coming in Week 04');
 }
+

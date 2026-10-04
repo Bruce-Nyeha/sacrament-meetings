@@ -14,6 +14,7 @@ export default function Home() {
 
       <Image 
         src= "/lds-image.jpg"
+        loading = "eager"
         alt='group picture'
         width = {800}
         height = {450}
